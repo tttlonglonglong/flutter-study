@@ -9,100 +9,91 @@ import 'package:flutter_dart_learn/layout/statefull_group_page.dart';
 import 'dart/data_type.dart';
 import 'layout/flutter_layout_page.dart';
 
-//void main() => runApp(MyApp());
+void main() => runApp(MyApp());
 //void main() => runApp(PluginUse());
 //void main() => runApp(LessGroupPage());
-//void main() => runApp(StatefulDroup());
-void main() => runApp(FlutterLayoutPage());
-
-
-
+//void main() => runApp(StatefulGroup());
+//void main() => runApp(FlutterLayoutPage());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter 必备Dart基础',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter 必备Dart基础'),
-      routes:<String, WidgetBuilder>{
-        'less':(BuildContext context)=>LessGroupPage(),
-        'ful':(BuildContext context)=>StatefulGroup(),
-      }
-    );
+        title: 'Flutter 必备Dart基础',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+//      home: MyHomePage(title: 'Flutter 必备Dart基础'),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('如何创建和使用Flutter的路由与导航？'),
+            leading: GestureDetector(
+              onTap: (){
+                // 路由的跳出
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back),
+            ),
+          ),
+          body: RouteNavigator(),
+        ),
+        routes: <String, WidgetBuilder>{
+          'plugin': (BuildContext context) => PluginUse(),
+          'less': (BuildContext context) => LessGroupPage(),
+          'ful': (BuildContext context) => StatefulGroup(),
+          'layout': (BuildContext context) => FlutterLayoutPage(),
+        });
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class RouteNavigator extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _RouteNavigatorState createState() => _RouteNavigatorState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _RouteNavigatorState extends State<RouteNavigator> {
+  bool byName = true;
 
   @override
   Widget build(BuildContext context) {
-    // _oopLearn();
-    // _functionLearn();
-    _genericLearn();
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: ListView(
-            children: <Widget>[
-//              DateType()
-            ],
+    return Container(
+      color: Colors.blue,
+      child: Column(
+        children: <Widget>[
+          SwitchListTile(
+            title: Text('${byName ? '' : '不'}通过路由名跳转'),
+            value: byName,
+            onChanged: (value) {
+              print('点了路由跳转的Switch开关:${value}');
+              setState(() {
+                byName = value;
+              });
+              print('点了路由跳转的Switch开关byName:${byName}');
+            },
           ),
-        ));
+          _item('StatelessWidget与基础件', StatefulGroup(), 'ful'),
+          _item('StatelessWidget与无状态基础件', LessGroupPage(), 'less'),
+          _item('如何进行Flutter布局开发？', FlutterLayoutPage(), 'layout'),
+          _item('如何使用Flutter包和插件', PluginUse(), 'plugin'),
+        ],
+      ),
+    );
   }
 
-  void _oopLearn() {
-    print('------_oopLearn--------');
-    Logger log1 = Logger();
-    Logger log2 = Logger();
-    print(log1 == log2);
-    Student.doPrint('_oopLearn');
-    // 创建Student 的对象
-    Student stu1 = Student('清华', 'Jack', 18);
-    print('getter获取私有字段属性：${stu1.school}');
-    // setter设置私有字段的值
-    stu1.school = '985';
-    print('getter获取私有字段属性：${stu1.school}');
-    print(stu1.toString());
-
-
-    Student stu2  =Student('北大', 'Tom', 16, city:'上海', country:'中国');
-    print(stu2.toString());
-
-    StudyFlutter studyFlutter =StudyFlutter();
-    studyFlutter.study();
-
-    print('------_oopLearn--end--------');
-  }
-
-  void _functionLearn() {
-    TestFunction testFunction  = TestFunction();
-    testFunction.start();
-  }
-
-  void _genericLearn() {
-    TestGeneric testGeneric  = TestGeneric();
-    testGeneric.start();
+  _item(String title, page, String routeName) {
+    return Container(
+      child: RaisedButton(
+        onPressed: () {
+          print('点击了RaisedButton跳转按钮');
+          if(byName){
+            Navigator.pushNamed(context, routeName);
+          } else {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>page));
+          }
+        },
+        child: Text(title),
+      ),
+    );
   }
 }

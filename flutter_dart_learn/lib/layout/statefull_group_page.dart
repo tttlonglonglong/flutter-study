@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_color_plugin/flutter_color_plugin.dart';
 
+// StatefulWidget与基础组件
 class StatefulGroup extends StatefulWidget {
   @override
   _StatefulGroupState createState() => _StatefulGroupState();
@@ -19,7 +20,16 @@ class _StatefulGroupState extends State<StatefulGroup> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('StateGroupPage与基础组件')),
+        appBar: AppBar(
+          title: Text('StateGroupPage与基础组件'),
+          leading: GestureDetector(
+            onTap: () {
+              // 路由的跳出
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back),
+          ),
+        ),
         // 导航栏Tab
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
@@ -77,23 +87,23 @@ class _StatefulGroupState extends State<StatefulGroup> {
                           TextField(
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              hintText:'请输入',
-                              hintStyle: TextStyle(fontSize:15),
+                              hintText: '请输入',
+                              hintStyle: TextStyle(fontSize: 15),
                             ),
                           ),
                           Container(
                             height: 100,
-                            margin: EdgeInsets.only(top:10),
-                            decoration: BoxDecoration(color: Colors.lightBlueAccent),
+                            margin: EdgeInsets.only(top: 10),
+                            decoration:
+                                BoxDecoration(color: Colors.lightBlueAccent),
                             child: PageView(
                               children: <Widget>[
-                                _item('Page1',Colors.deepPurple),
-                                _item('Page2',Colors.green),
-                                _item('Page3',Colors.red),
-                                _item('Page4',Colors.yellow),
+                                _item('Page1', Colors.deepPurple),
+                                _item('Page2', Colors.green),
+                                _item('Page3', Colors.red),
+                                _item('Page4', Colors.yellow),
                               ],
                             ),
-
                           )
                         ],
                       ),
@@ -117,7 +127,10 @@ class _StatefulGroupState extends State<StatefulGroup> {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(color: color),
-      child: Text(title, style: TextStyle(fontSize: 22, color: Colors.white),),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 22, color: Colors.white),
+      ),
     );
   }
 }

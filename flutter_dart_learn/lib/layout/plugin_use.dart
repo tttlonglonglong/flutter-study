@@ -2,30 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_color_plugin/flutter_color_plugin.dart';
 
 
-class PluginUse extends StatelessWidget {
-  // This widget is the root of your application.
+// StatelessWidget 包括一个Page 会导致路由无法返回，因为不是页面组件
+//class PluginUse extends StatelessWidget {
+//  // This widget is the root of your application.
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      title: '如何使用flutter插件',
+//      theme: ThemeData(
+//        primarySwatch: Colors.blue,
+//      ),
+//      home: MyHomePage(title: '如何使用flutter插件 '),
+//    );
+//  }
+//}
+
+class PluginUse extends StatefulWidget {
+//  PluginUse({Key key, this.title}) : super(key: key);
+
+  final String title = '如何使用flutter插件';
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '如何使用flutter插件',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: '如何使用flutter插件 '),
-    );
-  }
+  _PluginUseState createState() => _PluginUseState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _PluginUseState extends State<PluginUse> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -39,6 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        leading: GestureDetector(
+          onTap: () {
+            // 路由的跳出
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back),
+        ),
       ),
       body: Center(
         child: Column(

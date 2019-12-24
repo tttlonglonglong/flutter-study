@@ -13,7 +13,16 @@ class LessGroupPage extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(title:Text('StatelessWidget与基础组件')),
+        appBar: AppBar(
+          title:Text('StatelessWidget与基础组件'),
+          leading: GestureDetector(
+            onTap: () {
+              // 路由的跳出
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back),
+          ),
+        ),
         body: Container(
           decoration: BoxDecoration(color: Colors.white),
           alignment: Alignment.center,
