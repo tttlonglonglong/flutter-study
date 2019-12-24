@@ -7,6 +7,7 @@ import 'package:flutter_dart_learn/layout/plugin_use.dart';
 import 'package:flutter_dart_learn/layout/statefull_group_page.dart';
 
 import 'dart/data_type.dart';
+import 'gesture/gesture_page.dart';
 import 'layout/flutter_layout_page.dart';
 
 void main() => runApp(MyApp());
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           'less': (BuildContext context) => LessGroupPage(),
           'ful': (BuildContext context) => StatefulGroup(),
           'layout': (BuildContext context) => FlutterLayoutPage(),
+          'gesture': (BuildContext context) => GesturePage(),
         });
   }
 }
@@ -76,6 +78,7 @@ class _RouteNavigatorState extends State<RouteNavigator> {
           _item('StatelessWidget与无状态基础件', LessGroupPage(), 'less'),
           _item('如何进行Flutter布局开发？', FlutterLayoutPage(), 'layout'),
           _item('如何使用Flutter包和插件', PluginUse(), 'plugin'),
+          _item('如何检测用户手势以及处理点击事件', GesturePage(), 'gesture'),
         ],
       ),
     );
