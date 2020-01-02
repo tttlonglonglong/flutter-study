@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journey_app/httpPractice/http_practice.dart';
 import 'package:flutter_journey_app/pages/home_page.dart';
 import 'package:flutter_journey_app/pages/my_page.dart';
 import 'package:flutter_journey_app/pages/search_page.dart';
@@ -32,6 +33,7 @@ class _TabNavgatorState extends State<TabNavigator>{
           SearchPage(),
           TravelPage(),
           MyPage(),
+          HttpPractice(),
         ],
       ),
       bottomNavigationBar:BottomNavigationBar(
@@ -70,6 +72,13 @@ class _TabNavgatorState extends State<TabNavigator>{
               activeIcon:Icon(Icons.account_circle, color: _activeColor,),
               title: Text('我的', style: TextStyle(
                 color: _currentIndex != 3 ? _defaultColor : _activeColor,
+              ),)
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle,color: _defaultColor,),
+              activeIcon:Icon(Icons.account_circle, color: _activeColor,),
+              title: Text('http练习', style: TextStyle(
+                color: _currentIndex != 4 ? _defaultColor : _activeColor,
               ),)
           ),
       ])
