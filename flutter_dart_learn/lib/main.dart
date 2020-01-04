@@ -3,6 +3,7 @@ import 'package:flutter_dart_learn/animation/AnimatedBuilder_page.dart';
 import 'package:flutter_dart_learn/animation/logo_app.dart';
 import 'package:flutter_dart_learn/dart/function_learn.dart';
 import 'package:flutter_dart_learn/dart/generic_learn.dart';
+import 'package:flutter_dart_learn/httpDemo/http_demo.dart';
 import 'package:flutter_dart_learn/launcher/launch_page.dart';
 import 'package:flutter_dart_learn/layout/less_group_page.dart';
 import 'package:flutter_dart_learn/dart/oop_learn.dart';
@@ -10,13 +11,19 @@ import 'package:flutter_dart_learn/layout/plugin_use.dart';
 import 'package:flutter_dart_learn/layout/statefull_group_page.dart';
 import 'package:flutter_dart_learn/photoApp/photo_app_page.dart';
 import 'package:flutter_dart_learn/resource/res_page.dart';
+import 'package:flutter_dart_learn/sharedPreferences/shared_preferences.dart';
 
 import 'ImageApp/image_app_page.dart';
+import 'ListDemo/expand_list.dart';
+import 'ListDemo/grid_view.dart';
+import 'ListDemo/list_view.dart';
+import 'ListDemo/refresh_List.dart';
 import 'animation/AnimatedWidget_page.dart';
 import 'animation/photo_hero.dart';
 import 'animation/photo_radial_hero.dart';
 import 'dart/data_type.dart';
 import 'gesture/gesture_page.dart';
+import 'httpDemo/future_builder_page.dart';
 import 'layout/flutter_layout_page.dart';
 import 'lifecycle/app_lifecycle.dart';
 import 'lifecycle/flutter_widget_lifecycle.dart';
@@ -92,14 +99,21 @@ class _DynamicThemeState extends State<DynamicTheme> {
           'appLifecycle': (BuildContext context) => AppLifecycle(),
           'photo': (BuildContext context) => PhotoApp(),
           'image': (BuildContext context) => ImageApp(),
-//          'animation': (BuildContext context) => LogoApp(),
-//          'animation-widget': (BuildContext context) => LogoAppAnimatedWidget(),
-//          'animation-builder': (BuildContext context) => LogoAppAnimatedBuilder(),
-//          'animation-hero': (BuildContext context) => HeroAnimation(),
-//          'animation-radial': (BuildContext context) => RadialExpansionDemo(),
+          'animation': (BuildContext context) => LogoApp(),
+          'animation-widget': (BuildContext context) => LogoAppAnimatedWidget(),
+          'animation-builder': (BuildContext context) => LogoAppAnimatedBuilder(),
+          'animation-hero': (BuildContext context) => HeroAnimation(),
+          'animation-radial': (BuildContext context) => RadialExpansionDemo(),
           'TabbedAppBarSample': (BuildContext context) => TabbedAppBarSample(),
           'DrawerNavigator': (BuildContext context) => DrawerNavigator(),
           'TabNavigator': (BuildContext context) => TabNavigator(),
+          'HttpDemo': (BuildContext context) => HttpDemo(),
+          'FutureBuilderPage': (BuildContext context) => FutureBuilderPage(),
+          'SharedPreferencesPage': (BuildContext context) => SharedPreferencesPage(),
+          'ListViewPage': (BuildContext context) => ListViewPage(),
+          'ExpandListPage': (BuildContext context) => ExpandListPage(),
+          'GridViewPage': (BuildContext context) => GridViewPage(),
+          'RefreshListPage': (BuildContext context) => RefreshListPage(),
         });
   }
 }
@@ -140,14 +154,21 @@ class MyApp extends StatelessWidget {
           'appLifecycle': (BuildContext context) => AppLifecycle(),
           'photo': (BuildContext context) => PhotoApp(),
           'image': (BuildContext context) => ImageApp(),
-//          'animation': (BuildContext context) => LogoApp(),
-//          'animation-widget': (BuildContext context) => LogoAppAnimatedWidget(),
-//          'animation-builder': (BuildContext context) => LogoAppAnimatedBuilder(),
-//          'animation-hero': (BuildContext context) => HeroAnimation(),
-//          'animation-radial': (BuildContext context) => RadialExpansionDemo(),
+          'animation': (BuildContext context) => LogoApp(),
+          'animation-widget': (BuildContext context) => LogoAppAnimatedWidget(),
+          'animation-builder': (BuildContext context) => LogoAppAnimatedBuilder(),
+          'animation-hero': (BuildContext context) => HeroAnimation(),
+          'animation-radial': (BuildContext context) => RadialExpansionDemo(),
           'TabbedAppBarSample': (BuildContext context) => TabbedAppBarSample(),
           'DrawerNavigator': (BuildContext context) => DrawerNavigator(),
           'TabNavigator': (BuildContext context) => TabNavigator(),
+          'HttpDemo': (BuildContext context) => HttpDemo(),
+          'FutureBuilderPage': (BuildContext context) => FutureBuilderPage(),
+          'SharedPreferencesPage': (BuildContext context) => SharedPreferencesPage(),
+          'ListViewPage': (BuildContext context) => ListViewPage(),
+          'ExpandListPage': (BuildContext context) => ExpandListPage(),
+          'GridViewPage': (BuildContext context) => GridViewPage(),
+          'RefreshListPage': (BuildContext context) => RefreshListPage(),
         });
   }
 }
@@ -186,16 +207,23 @@ class _RouteNavigatorState extends State<RouteNavigator> {
           _item('如何打开第三方应用', LaunchPage(), 'launch'),
           _item('Flutter页面生命周期方法', WidgetLifecycle(), 'lifecycle'),
           _item('Flutter应用的生命周期', AppLifecycle(), 'appLifecycle'),
-          _item('APP拍照', PhotoApp(), 'photo'),
-          _item('Image图片处理', ImageApp(), 'image'),
-          _item('Flutter动画', LogoApp(), 'animation'),
+//          _item('APP拍照', PhotoApp(), 'photo'),
+//          _item('Image图片处理', ImageApp(), 'image'),
+//          _item('Flutter动画', LogoApp(), 'animation'),
 //          _item('Flutter动画animation-widget', LogoAppAnimatedWidget(), 'animation-widget'),
 //          _item('Flutter动画animation-builder', LogoAppAnimatedBuilder(), 'animation-builder'),
 //          _item('Flutter动画animation-hero', HeroAnimation(), 'animation-hero'),
 //          _item('Flutter动画animation-radial', RadialExpansionDemo(), 'animation-radial'),
-          _item('Flutter顶部导航', TabbedAppBarSample(), 'TabbedAppBarSample'),
-          _item('Flutter动画底部导航', TabNavigator(), 'TabNavigator'),
-          _item('Flutter动画抽屉导航', DrawerNavigator(), 'DrawerNavigator'),
+//          _item('Flutter顶部导航', TabbedAppBarSample(), 'TabbedAppBarSample'),
+//          _item('Flutter动画底部导航', TabNavigator(), 'TabNavigator'),
+//          _item('Flutter动画底部导航', TabNavigator(), 'TabNavigator'),
+          _item('Flutter-HttpDemo', HttpDemo(), 'HttpDemo'),
+          _item('Flutter-FutureBuilder', FutureBuilderPage(), 'FutureBuilderPage'),
+          _item('Flutter-SharedPreferencesPage', SharedPreferencesPage(), 'SharedPreferencesPage'),
+          _item('Flutter-ListViewPage', ListViewPage(), 'ListViewPage'),
+          _item('Flutter-ListViewPage', ListViewPage(), 'ListViewPage'),
+          _item('Flutter-GridView网格布局', ExpandListPage(), 'GridViewPage'),
+          _item('Flutter-Refresh下拉刷新', RefreshListPage(), 'RefreshListPage'),
         ],
       ),
     );
